@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { QRCodeSVG } from "qrcode.react";
 import { supabase } from "./supabase";
 
 type Group = {
@@ -338,13 +339,23 @@ export default function App() {
           </div>
 
           <div className="invite-strip">
-            <div>
+            <div className="invite-details">
               <span className="small-label">INVITE FRIENDS</span>
               <strong>{dashboard.group.join_code}</strong>
+              <p className="invite-hint">Share the link or let friends scan to join.</p>
+              <button type="button" className="button button-dark invite-button" onClick={() => void copyInvite()}>
+                Copy invite link
+              </button>
             </div>
-            <button type="button" className="button button-dark invite-button" onClick={() => void copyInvite()}>
-              Copy invite link
-            </button>
+            <div className="invite-qr">
+              <QRCodeSVG
+                value={inviteUrl}
+                size={132}
+                level="M"
+                title={`Scan to join ${dashboard.group.name}`}
+              />
+              <span>Scan to join</span>
+            </div>
           </div>
 
           <div className="challenge-card">

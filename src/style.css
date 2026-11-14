@@ -248,11 +248,10 @@ button:disabled { cursor: wait; opacity: .68; }
 .dashboard-heading .muted { margin: 0; }
 
 .invite-strip {
-  display: flex;
-  min-height: 74px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 18px;
   margin-bottom: 16px;
   padding: 14px 18px;
   border: 1px dashed #d8d8ca;
@@ -260,9 +259,12 @@ button:disabled { cursor: wait; opacity: .68; }
   background: #f1f0e9;
 }
 
-.invite-strip > div { display: grid; gap: 4px; }
+.invite-details { display: grid; justify-items: start; gap: 4px; }
 .invite-strip strong { font: 800 clamp(14px, 4vw, 19px) "Manrope", sans-serif; letter-spacing: 1.5px; }
 .invite-strip .small-label { color: var(--muted); font-size: 9px; }
+.invite-hint { margin: 2px 0 4px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+.invite-qr { display: grid; justify-items: center; gap: 5px; padding: 10px; border-radius: 12px; background: var(--paper); }
+.invite-qr span { color: var(--muted); font-size: 10px; font-weight: 600; }
 .button-dark { background: var(--ink); color: white; }
 .button-dark:hover:not(:disabled) { background: #394237; }
 .invite-button { min-height: 38px; padding: 0 13px; font-size: 11px; }
@@ -328,12 +330,12 @@ button:disabled { cursor: wait; opacity: .68; }
 }
 
 @media (max-width: 380px) {
-  .invite-strip { align-items: flex-start; flex-direction: column; }
-  .invite-button { width: 100%; }
   .challenge-card-top { align-items: flex-start; flex-direction: column; }
 }
 
 @media (max-width: 460px) {
-  .invite-strip { align-items: flex-start; flex-direction: column; }
+  .invite-strip { grid-template-columns: 1fr; justify-items: stretch; }
+  .invite-details { justify-items: center; text-align: center; }
+  .invite-qr { justify-self: center; }
   .invite-button { width: 100%; }
 }
